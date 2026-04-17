@@ -1,7 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import { Rating } from 'react-native-ratings';
-import { Ionicons } from '@expo/vector-icons'
+import { ButtonPrimary, ButtonSecondary } from './components/button';
 
 export default function App() {
   return (
@@ -23,24 +23,24 @@ export default function App() {
             defaultRating={5}
           />
         </View>
+
+        <View style={styles.price}>
+            <Text style={styles.price_symbol}>R$</Text>
+            <Text style={styles.price_value}>9,00</Text>
+        </View>
+
         <View style={styles.divider}/>
-        <View style={styles.buttons_container}>
-             <Pressable style={styles.favorite_button}>
-              <Ionicons
-              name={"heart"}
-              size={20}
-              color={"#f94d4d"}
+        <View style={styles.buttons_container}>         
+            <ButtonSecondary
+              text="FAVORITAR"
+              icon="heart"
+              onClick={()=>{}}
             />
-            <Text style={styles.favorite_button_text}>FAVORITAR</Text>
-          </Pressable>
-          <Pressable style={styles.buy_button}>
-            <Ionicons
-              name={"cart"}
-              size={20}
-              color={"white"}
+            <ButtonPrimary
+              text="COMPRAR"
+              icon="cart"
+              onClick={() => {}}  
             />
-            <Text style={styles.buy_button_text}>COMPRAR</Text>
-          </Pressable>
         </View>
      
       </View>
@@ -88,37 +88,21 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#b4b4b4'
   },
-  favorite_button:{
-    width: '100%',
-    flexDirection: 'row',
-    gap: 12,
-    backgroundColor: '#fff',
-    borderColor: '#f94d4d',
-    borderWidth: 2,
-    borderRadius: 8,
-    padding: 12,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  favorite_button_text:{
-    color: "#f94d4d",
-    fontSize: 20,
-  },
-  buy_button:{
-    width: '100%',
-    flexDirection: 'row',
-    gap: 12,
-    backgroundColor: '#f94d4d',
-    borderRadius: 8,
-    padding: 12,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  buy_button_text:{
-    color: "#fff",
-    fontSize: 20,
-  },
   buttons_container:{
     gap: 12
+  },
+  price:{
+    width: '100%',
+    flexDirection: 'row',
+    gap: 8,
+    alignItems: 'center',
+    marginVertical: 6
+  },
+  price_symbol:{
+    fontSize: 18,
+  },
+  price_value:{
+    fontSize: 32,
+    fontWeight: 600
   }
 });
