@@ -1,9 +1,22 @@
 import { Text, Pressable, StyleSheet } from 'react-native'
 import { Ionicons } from '@expo/vector-icons'
 
+// inline: style={{ opacity: 1.0 }}
+
+// StyleSheet: style={styles.obj_name}
+
+// funcao: style={ () => [{ opacity: 1.0 }, styles.obj_name] }
+
+
 export function ButtonPrimary({ text, icon, onClick }) {
     return (
-        <Pressable style={styles.button_primary} onPress={onClick}>
+        <Pressable 
+            style={({pressed}) => [
+                styles.button_primary,
+                { opacity: pressed ? 0.5 : 1.0 }
+            ]} 
+            onPress={onClick}
+            >
             <Ionicons
                 name={icon}
                 size={20}
@@ -16,7 +29,13 @@ export function ButtonPrimary({ text, icon, onClick }) {
 
 export function ButtonSecondary({ text, icon, onClick }) {
     return (
-        <Pressable style={styles.button_secondary} onPress={onClick}>
+        <Pressable 
+            style={({pressed}) => [
+                styles.button_secondary,
+                {opacity: pressed ? 0.5 : 1.0}
+            ]} 
+            onPress={onClick}
+        >
             <Ionicons
                 name={icon}
                 size={20}

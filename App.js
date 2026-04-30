@@ -2,8 +2,23 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
 import { Rating } from 'react-native-ratings';
 import { ButtonPrimary, ButtonSecondary } from './components/button';
+import React, {useState} from 'react'
+import Toast from 'react-native-toast-message'
 
 export default function App() {
+
+  const [isFavorite, setFavorite] = useState(false)
+
+  function setFavoriteValue(value){
+    setFavorite(value)  
+    // mostrar mensagem
+    Toast.show({
+        type: 'success',
+        text1: 'Sucesso!',
+        text2: 'Operação realizada com sucesso!',
+      })
+  }
+
   return (
     // JSX 
     <View style={styles.container}>
@@ -30,11 +45,14 @@ export default function App() {
         </View>
 
         <View style={styles.divider}/>
+
         <View style={styles.buttons_container}>         
             <ButtonSecondary
-              text="FAVORITAR"
-              icon="heart"
-              onClick={()=>{}}
+              text={isFavorite ? "REMOVER" : "FAVORITAR"}
+              icon={isFavorite ? "heart": "heart-outline"}
+              onClick={() => {
+                setFavoriteValue(!isFavorite)
+              }}
             />
             <ButtonPrimary
               text="COMPRAR"
@@ -42,8 +60,8 @@ export default function App() {
               onClick={() => {}}  
             />
         </View>
-     
       </View>
+      <Toast/>
     </View>
 
   );
