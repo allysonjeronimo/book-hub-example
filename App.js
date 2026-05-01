@@ -1,13 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Image, Pressable } from 'react-native';
+import { StyleSheet, Text, View, Image, Pressable, Modal } from 'react-native';
 import { Rating } from 'react-native-ratings';
 import { ButtonPrimary, ButtonSecondary } from './components/button';
 import React, {useState} from 'react'
 import Toast from 'react-native-toast-message'
+import LoginModal from './components/login-modal'
 
 export default function App() {
 
   const [isFavorite, setFavorite] = useState(false)
+  const [isModalVisible, setModalVisible] = useState(false)
 
   function setFavoriteValue(value){
     setFavorite(value)  
@@ -57,11 +59,16 @@ export default function App() {
             <ButtonPrimary
               text="COMPRAR"
               icon="cart"
-              onClick={() => {}}  
+              onClick={() => {
+                setModalVisible(true)
+              }}  
             />
         </View>
       </View>
       <Toast/>
+      <Modal visible={isModalVisible} animationType='fade' transparent={true}>
+              <LoginModal onClose={() => { setModalVisible(false)}}/>
+      </Modal>
     </View>
 
   );
